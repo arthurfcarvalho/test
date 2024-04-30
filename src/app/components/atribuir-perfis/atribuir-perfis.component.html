@@ -1,0 +1,30 @@
+<div class="info-usuario" *ngIf="usuario">
+    <h2>Detalhes do Usuário</h2>
+    <p>Nome: {{ usuario.nome }}</p>
+    <p>Email: {{ usuario.email }}</p>
+</div>
+
+<div class="container">
+    <div class="perfis-disponiveis">
+        <h3>Perfis disponíveis</h3>
+        <div *ngFor="let perfil of perfisDisponiveis">
+            <div (click)="adicionarPerfil(perfil)" style="cursor: pointer;">
+                {{perfil.nome}}
+            </div>
+        </div>
+    </div>
+
+    <div class="perfis-atribuidos">
+        <h3>Perfis atribuídos</h3>
+        <div *ngFor="let perfil of perfisAtribuidos">
+            <div (click)="removerPerfil(perfil)" style="cursor: pointer">
+                {{perfil.nome}}
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<div class="button-center">
+    <button (click)="submit()" class="salvar-button">Salvar</button>
+</div>
