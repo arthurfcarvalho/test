@@ -1,0 +1,4 @@
+<div class="dialog" [ngClass]="{ 'success': data.type === 'success', 'error': data.type === 'error' }">
+    <mat-icon *ngIf="data.type === 'success'">check_circle</mat-icon>
+    <p>{{ data.message }}</p>
+</div>

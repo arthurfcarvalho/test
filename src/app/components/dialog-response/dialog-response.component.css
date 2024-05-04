@@ -1,0 +1,23 @@
+.dialog {
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 600;
+    font-family: Arial, sans-serif;
+  }
+  
+  .success {
+    background-color: lightgreen;
+    color: green;
+  }
+  
+  .error {
+    background-color: lightcoral;
+    color: red;
+  }
+  
+  mat-icon {
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+  

@@ -3,6 +3,8 @@ import { Perfil } from 'src/app/models/perfil';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { PerfilService } from 'src/app/services/perfil.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogResponseComponent } from '../dialog-response/dialog-response.component';
 
 @Component({
   selector: 'app-atribuir-perfis',
@@ -11,7 +13,9 @@ import { PerfilService } from 'src/app/services/perfil.service';
 })
 export class AtribuirPerfisComponent {
 
-  constructor(private usuarioService: UsuarioService, private perfilService: PerfilService) { }
+  constructor(
+    private usuarioService: UsuarioService, private perfilService: PerfilService, private dialog: MatDialog
+  ) { }
 
   usuario!: Usuario;
   perfisDisponiveis: Perfil[] = [];
@@ -26,7 +30,7 @@ export class AtribuirPerfisComponent {
     this.usuarioService.buscarUsuarioPorId(11).subscribe(usuario => {
       this.usuario = usuario;
       this.perfisAtribuidos.push(...usuario.perfis);
-    })
+    });
   }
 
   carregarPerfis(): void {
@@ -42,7 +46,7 @@ export class AtribuirPerfisComponent {
     );
   }
 
-  adicionarPerfil(perfil: Perfil){
+  adicionarPerfil(perfil: Perfil): void {
     if(!this.perfisAtribuidos.find(p => p.id === perfil.id)){
       this.perfisAtribuidos.push(perfil);
       
@@ -53,7 +57,7 @@ export class AtribuirPerfisComponent {
     }
   }
 
-  removerPerfil(perfil: Perfil){
+  removerPerfil(perfil: Perfil): void {
     const index = this.perfisAtribuidos.findIndex(p => p.id === perfil.id);
     if(index !== -1){
       this.perfisAtribuidos.splice(index, 1);
@@ -61,16 +65,22 @@ export class AtribuirPerfisComponent {
     } 
   }
 
-  submit(){
+  submit(): void {
     this.usuarioService.atualizarPerfis(this.usuario.id, this.perfisAtribuidos).subscribe(
-      () => {
+      (response: any) => {
+        console.log("Objeto:", response);
+        console.log('Mensagem:', response.message); 
         console.log('Perfis atualizados com sucesso!');
+        const dialogRef = this.dialog.open(DialogResponseComponent, {
+          data: { type: 'success', message: response.message }
+        });
       },
       (error: any) => {
         console.error('Erro ao atualizar perfis:', error);
+        const dialogRef = this.dialog.open(DialogResponseComponent, {
+          data: { type: 'error', message: 'Ocorreu um erro ao atualizar os perfis do usuário.' }
+        });
       }
     );
   }
-  
-
 }
