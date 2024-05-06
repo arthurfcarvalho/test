@@ -1,15 +1,47 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/usuario';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map, Observable } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable } from 'rxjs';
 import { Perfil } from '../models/perfil';
+import { TokenService } from './token.service';
+import { jwtDecode } from 'jwt-decode';
+import { CadastroUsuario } from '../models/usuario-cadastro';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-  constructor(private http: HttpClient) { }
+  private usuarioSubject = new BehaviorSubject<CadastroUsuario | null>(null)
+
+  constructor(private http: HttpClient, private tokenService: TokenService) { 
+    if(this.tokenService.possuiToken()){
+      this.decodificarJWT();
+    }
+  }
+
+
+  decodificarJWT(){
+    const token = this.tokenService.retornarToken()
+    const usuario = jwtDecode(token) as CadastroUsuario
+    this.usuarioSubject.next(usuario)
+  }
+  retornarUsuario(){
+    return this.usuarioSubject.asObservable();
+  }
+  salvarToken(token: string){
+    console.log("Token salvo?", token);
+    this.tokenService.salvarToken(token)
+    this.decodificarJWT();
+  }
+  logout(){
+    this.tokenService.excluirToken();
+    this.usuarioSubject.next(null)
+  }
+  estaLogado(){
+    return this.tokenService.possuiToken()
+  }
 
   buscarUsuarioPorId(id: number): Observable<Usuario> {
     const url = `http://localhost:8080/usuario/listar/${id}`;
