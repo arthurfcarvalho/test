@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AtribuirPerfisComponent } from './components/atribuir-perfis/atribuir-perfis.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DialogResponseComponent } from './components/dialog-response/dialog-response.component';
 import { MatDialogModule } from '@angular/material/dialog'; // Importe MatDialogModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +23,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatDividerModule} from '@angular/material/divider'
+import { AutenticacaoInterceptor } from './components/interceptors/autenticacao.interceptor';
 
 
 @NgModule({
@@ -49,7 +50,14 @@ import {MatDividerModule} from '@angular/material/divider'
     AppRoutingModule
 
   ],
-  providers: [],
+
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AutenticacaoInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
