@@ -55,4 +55,9 @@ export class UsuarioService {
       map((response: any) => response)
     );
   }
+
+  cadastrar(usuario: CadastroUsuario){
+    const url = 'http://localhost:8080/usuario/registrar';
+    return this.http.post(url,usuario)
+  }
 }

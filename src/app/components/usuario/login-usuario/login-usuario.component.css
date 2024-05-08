@@ -1,0 +1,108 @@
+.login-component {
+    max-width: 50%;
+    min-height: 74%;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+
+    .login {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 68px;
+      box-shadow: 10px 0px 10px #38b52d;
+      align-items: center;
+    }
+  
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 16px;
+      
+  
+      mat-card-header {
+        margin-bottom: 24px;
+  
+        mat-card-title {
+          font-size: 32px;
+          font-weight: 400;
+        }
+      }
+  
+      mat-card-content {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+  
+      mat-card-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: normal;
+  
+        button {
+          margin: 0 8px;
+          margin-bottom: 16px;
+        }
+      }
+  
+      p {
+        font-size: 16px;
+        font-weight: 500;
+      }
+  
+      a {
+        cursor: pointer;
+  
+        &:active {
+          color: #1b8d26;
+        }
+      }
+    }
+  }
+  .mat-mdc-card-header {
+    display: flex;
+    padding: 16px 16px 0;
+    align-items: center;
+    justify-content: center;
+}
+.mat-mdc-card-content {
+  justify-content: center;
+  display: flex;
+  padding: 0 16px;
+  text-align: center;
+}
+.mat-mdc-card-content[_ngcontent-ng-c3770291847] {
+  display: flex;
+  padding: 0 16px;
+  text-align: center;
+  flex-direction: column;
+}
+.mdc-card__actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 52px;
+  padding: 8px;
+  justify-content: center;
+}
+
+
+@media screen and (max-width: 400px) {
+	.mat-mdc-card-content {
+    justify-content: center;
+    display: flex;
+    padding: 0 16px;
+    text-align: center;
+  }
+  .login-component[_ngcontent-ng-c3770291847] {
+    max-width: 100%;
+    min-height: 74%;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+}

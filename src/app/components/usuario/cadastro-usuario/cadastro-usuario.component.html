@@ -62,10 +62,19 @@
                         <mat-error *ngIf="cadastroForm.get('confirmarSenha')?.errors?.['equalTo']">Senhas
                             diferentes</mat-error>
                     </mat-form-field>
+                    <div class="grid-container">
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Data de Nascimento</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="data_nascimento" placeholder="Data de Nascimento">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="cadastroForm.get('dataNascimento')?.errors">Data de Nascimento é obrigatória</mat-error>
+                        </mat-form-field>
+                    </div>
                 </div>
             </mat-card-content>
             <mat-card-actions class="full-width">
-                <button (click)="executarAcao()" mat-flat-button color="primary">CADASTRAR
+                <button (click)="cadastrar()" mat-flat-button color="primary">CADASTRAR
                 </button>
             </mat-card-actions>
         </form>

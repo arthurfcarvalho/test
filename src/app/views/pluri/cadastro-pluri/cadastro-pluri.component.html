@@ -1,0 +1,66 @@
+<mat-tab-group >
+    <mat-tab>
+        
+        <div>
+            {{codigo}}
+        </div>
+
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon"></mat-icon>
+            {{titulo1}}
+        </ng-template>
+
+        <form [formGroup]="cadastroInformacoesGeraisForm">
+            <mat-card-title>
+                <h2>Informacoes Gerais</h2>
+            </mat-card-title>
+            <mat-card-content>
+                <mat-form-field>
+                    <mat-label>Selecione o Trimestre</mat-label>
+                    <mat-select disableRipple>
+                      <mat-option value="1">1º trimestre</mat-option>
+                      <mat-option value="2">2º trimestre</mat-option>
+                      <mat-option value="3">3º trimestre</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="grid-container">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Ano de Aplicacao</mat-label>
+                        <input matInput formControlName="ano_aplicacao" placeholder="Ano de aplicacao" >                        
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data inicio pluri</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="data_inicio_pluri" placeholder="Data inicio pluri">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data inicio recuperacao</mat-label>
+                        <input matInput [matDatepicker]="picker2" formControlName="data_inicio_recuperacao" placeholder="Data inicio recuperacao">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>                
+            </mat-card-content>
+        </form>
+        <button mat-button (click)="avancarParaProximaAba()">Próxima Aba</button>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon"></mat-icon>
+            {{titulo2}}
+        </ng-template>
+        Content 2
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+            {{titulo3}}
+        </ng-template>
+    </mat-tab>
+</mat-tab-group>
+
+<mat-card class="demo-inline-calendar-card">
+    <mat-calendar [(selected)]="selected"></mat-calendar>
+</mat-card>
+<p>Selected date: {{selected}}</p>

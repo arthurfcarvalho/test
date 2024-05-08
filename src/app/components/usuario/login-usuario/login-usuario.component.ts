@@ -28,7 +28,7 @@ export class LoginUsuarioComponent {
       next: (value) => {
         console.log(value)
         console.log('Login realizado com sucesso', value)
-        this.router.navigateByUrl('/usuario/atribuir-perfis/')
+        this.router.navigateByUrl('/home')
       },
       error:(err)=>{
         console.log(this.loginForm.value)

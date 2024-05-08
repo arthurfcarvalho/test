@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Perfil } from 'src/app/models/perfil';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -11,7 +11,7 @@ import { DialogResponseComponent } from '../dialog-response/dialog-response.comp
   templateUrl: './atribuir-perfis.component.html',
   styleUrls: ['./atribuir-perfis.component.css']
 })
-export class AtribuirPerfisComponent {
+export class AtribuirPerfisComponent implements OnInit{
 
   constructor(
     private usuarioService: UsuarioService, private perfilService: PerfilService, private dialog: MatDialog
@@ -27,7 +27,8 @@ export class AtribuirPerfisComponent {
   };
   
   carregarUsuario(): void {
-    this.usuarioService.buscarUsuarioPorId(11).subscribe(usuario => {
+    this.usuarioService.buscarUsuarioPorId(12
+    ).subscribe(usuario => {
       this.usuario = usuario;
       this.perfisAtribuidos.push(...usuario.perfis);
     });
