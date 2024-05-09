@@ -1,6 +1,11 @@
+import { PluriService } from './../../../services/pluri.service';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTabGroup } from '@angular/material/tabs';
+import * as moment from 'moment';
+import { Usuario } from 'src/app/models/usuario';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-cadastro-pluri',
@@ -8,37 +13,55 @@ import { MatTabGroup } from '@angular/material/tabs';
   styleUrls: ['./cadastro-pluri.component.css'],
   encapsulation: ViewEncapsulation.None 
 })
+
+
 export class CadastroPluriComponent implements OnInit{
   @ViewChild(MatTabGroup) tabGroup!: MatTabGroup;
   selected!: Date | null;
-  cadastroInformacoesGeraisForm!: FormGroup;
   titulo1 = "Informacoes Gerais";
   titulo2 = "Atividades Acompanhadas pela comissao";
   titulo3 = "Informações da Aplicação do PLURI";
   codigo = "TESTE001"
   trimestres: string[] = ['1º Trimestre', '2º Trimestre', '3º Trimestre', '4º Trimestre'];
   trimestreSelecionado: string = '';
+  informacoesGeraisForm!: FormGroup;
+  atividadesComissaoForm!: FormGroup;
+  informacoesAplicacaoForm!: FormGroup;
   
-  constructor(private formBuilder: FormBuilder){
+  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private pluriService: PluriService){
   }
-
+  
   ngOnInit() {
     this.inicializarFormulario();
+    const usuario = this.usuarioService.retornarUsuario();
+    console.log(usuario)
   }
 
-  envioInformacoesGeraisForm(){}
+  envioInformacoesGeraisForm(){
+    let newDate: moment.Moment = moment.utc(this.informacoesGeraisForm.value.data_inicio_pluri).local();
+    this.informacoesGeraisForm.value.data_inicio_pluri = newDate.format("YYYY-MM-DD") + "T" + "00:00:01"; 
+    let newDate2: moment.Moment = moment.utc(this.informacoesGeraisForm.value.data_inicio_recuperacao).local();
+    this.informacoesGeraisForm.value.data_inicio_recuperacao = newDate2.format("YYYY-MM-DD") + "T" + "00:00:00"; 
+    
+    this.pluriService.criarPluri(this.informacoesGeraisForm.value).subscribe({
+      next: (value) => {
+        console.log("Cadastro Realizado",value) 
+        
+      },error:(err) =>{console.log(this.informacoesGeraisForm.value),console.log("Error",err)}
+    })
+  }
 
   avancarParaProximaAba() {
     this.tabGroup.selectedIndex! += 1;
   }
 
   inicializarFormulario() {
-    this.cadastroInformacoesGeraisForm = this.formBuilder.group({
-      nome: ['', Validators.required],
-      email: ['', Validators.required],
-      login: ['', Validators.required],
-      data_inicio_pluri: ['', Validators.required],
-      data_inicio_recuperacao: ['', Validators.required]
+    this.informacoesGeraisForm = this.formBuilder.group({
+      codigo: '123',
+      trimestre: 1,
+      ano_aplicacao: 2024,
+      data_inicio_pluri: '',
+      data_inicio_recuperacao: ''
     });
   }
 }

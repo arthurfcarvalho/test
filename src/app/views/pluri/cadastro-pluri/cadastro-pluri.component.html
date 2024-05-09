@@ -10,7 +10,7 @@
             {{titulo1}}
         </ng-template>
 
-        <form [formGroup]="cadastroInformacoesGeraisForm">
+        <form [formGroup]="informacoesGeraisForm">
             <mat-card-title>
                 <h2>Informacoes Gerais</h2>
             </mat-card-title>
@@ -44,6 +44,7 @@
             </mat-card-content>
         </form>
         <button mat-button (click)="avancarParaProximaAba()">Próxima Aba</button>
+        <button mat-button (click)="envioInformacoesGeraisForm()">Salvar</button>
     </mat-tab>
     <mat-tab>
         <ng-template mat-tab-label>
