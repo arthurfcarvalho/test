@@ -7,6 +7,7 @@ import { AuthGuard } from '../components/guard/aut.guard';
 import { HomeComponent } from '../components/home/home.component';
 import { CadastroUsuarioComponent } from '../components/usuario/cadastro-usuario/cadastro-usuario.component';
 import { CadastroPluriComponent } from '../views/pluri/cadastro-pluri/cadastro-pluri.component';
+import { ListarPluriComponent } from '../views/pluri/listar-pluri/listar-pluri/listar-pluri.component';
 
 
 
@@ -19,6 +20,7 @@ const routes: Routes = [
     { path: 'usuario/atribuir-perfis', component: AtribuirPerfisComponent, canActivate: [AuthGuard] },
     { path: 'usuario/cadastrar', component: CadastroUsuarioComponent},
     { path: 'pluri/criar', component: CadastroPluriComponent},
+    { path: 'pluri/listar', component: ListarPluriComponent},
   ];
 
 
