@@ -1,3 +1,4 @@
+import { DadosAtividadesDaComissao } from './../views/pluri/cadastro-pluri/models/DadosAtividadesDaComissao.model';
 import { DadosPluriInformacoesGerais } from './../views/pluri/cadastro-pluri/models/DadosPluriInformacoesGerais.model';
 import { Injectable } from "@angular/core";
 import { TokenService } from "./token.service";
@@ -15,6 +16,10 @@ export class PluriService{
     criarPluri(dados: DadosPluriInformacoesGerais){
         const url = this.baseUrl + '/criar-pluri'
         return this.http.post(url, dados);
+    }
+    atualizarInformacoesComissao(dados: DadosAtividadesDaComissao){
+        const url = this.baseUrl + '/atualizar-atividades-comissao'
+        return this.http.put(url, dados);
     }
 
 }

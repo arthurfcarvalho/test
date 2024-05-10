@@ -51,6 +51,33 @@ export class CadastroPluriComponent implements OnInit{
     })
   }
 
+  atualizarAtividadesDaComissaoForm(){
+    let newDate: moment.Moment = moment.utc(this.atividadesComissaoForm.value.data_inicio_pluri).local();
+    this.atividadesComissaoForm.value.data_inicio_pluri = newDate.format("YYYY-MM-DD") + "T" + "00:00:01"; 
+    let newDate2: moment.Moment = moment.utc(this.atividadesComissaoForm.value.data_inicio_recuperacao).local();
+    this.atividadesComissaoForm.value.data_inicio_recuperacao = newDate2.format("YYYY-MM-DD") + "T" + "00:00:00"; 
+    
+    this.pluriService.atualizarInformacoesComissao(this.atividadesComissaoForm.value).subscribe({
+      next: (value) => {
+        console.log("Atualizacao Realizada",value) 
+        
+      },error:(err) =>{console.log(this.atividadesComissaoForm.value),console.log("Error",err)}
+    })
+  }
+  atualizarInformacoesAplicacaoForm(){
+    let newDate: moment.Moment = moment.utc(this.informacoesAplicacaoForm.value.data_inicio_pluri).local();
+    this.informacoesAplicacaoForm.value.data_inicio_pluri = newDate.format("YYYY-MM-DD") + "T" + "00:00:01"; 
+    let newDate2: moment.Moment = moment.utc(this.informacoesAplicacaoForm.value.data_inicio_recuperacao).local();
+    this.informacoesAplicacaoForm.value.data_inicio_recuperacao = newDate2.format("YYYY-MM-DD") + "T" + "00:00:00"; 
+    
+    this.pluriService.atualizarInformacoesComissao(this.informacoesAplicacaoForm.value).subscribe({
+      next: (value) => {
+        console.log("Atualizacao Realizada",value) 
+        
+      },error:(err) =>{console.log(this.informacoesAplicacaoForm.value),console.log("Error",err)}
+    })
+  }
+
   avancarParaProximaAba() {
     this.tabGroup.selectedIndex! += 1;
   }
@@ -63,5 +90,24 @@ export class CadastroPluriComponent implements OnInit{
       data_inicio_pluri: '',
       data_inicio_recuperacao: ''
     });
+    this.atividadesComissaoForm = this.formBuilder.group({
+      data_indicacao_docentes: '',
+      data_envio_questoes: '',
+      data_diagramacao: '',
+      data_revisao: '',
+      data_impressao: '',
+      data_ensalamento: '',
+      data_lancamento_notas: '',
+      data_correcao_redacao: '',
+      data_enviar_recurso: '',
+      data_analise_recurso: '',
+      data_atualizacao_notas: '',
+    })
+    this.informacoesAplicacaoForm = this.formBuilder.group({
+      data_aplicacao: '',
+      data_reaplicacao: '',
+      data_divulgacao_notas: '',
+      realizado: false
+    })
   }
 }

@@ -30,34 +30,141 @@
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Data inicio pluri</mat-label>
-                        <input matInput [matDatepicker]="picker" formControlName="data_inicio_pluri" placeholder="Data inicio pluri">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
+                        <input matInput [matDatepicker]="picker10" formControlName="data_inicio_pluri" placeholder="Data inicio pluri">
+                        <mat-datepicker-toggle matSuffix [for]="picker10"></mat-datepicker-toggle>
+                        <mat-datepicker #picker10></mat-datepicker>
                     </mat-form-field>
                     <mat-form-field appearance="outline" class="full-width">
                         <mat-label>Data inicio recuperacao</mat-label>
-                        <input matInput [matDatepicker]="picker2" formControlName="data_inicio_recuperacao" placeholder="Data inicio recuperacao">
-                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                        <mat-datepicker #picker2></mat-datepicker>
+                        <input matInput [matDatepicker]="picker11" formControlName="data_inicio_recuperacao" placeholder="Data inicio recuperacao">
+                        <mat-datepicker-toggle matSuffix [for]="picker11"></mat-datepicker-toggle>
+                        <mat-datepicker #picker11></mat-datepicker>
                     </mat-form-field>
                 </div>                
             </mat-card-content>
         </form>
-        <button mat-button (click)="avancarParaProximaAba()">Próxima Aba</button>
-        <button mat-button (click)="envioInformacoesGeraisForm()">Salvar</button>
+        <div class="botoes">
+            <button mat-button (click)="avancarParaProximaAba()">Próxima Aba</button>
+            <button mat-button (click)="envioInformacoesGeraisForm()">Salvar</button>
+        </div>
     </mat-tab>
     <mat-tab>
         <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon"></mat-icon>
             {{titulo2}}
         </ng-template>
-        Content 2
+        <form [formGroup]="atividadesComissaoForm">
+            <mat-card-title>
+                <h2>Datas Atividades da Comissao</h2>
+            </mat-card-title>
+            <mat-card-content>
+                <div class="grid-container">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Indicacao Docentes</mat-label>
+                        <input matInput [matDatepicker]="picker16" formControlName="data_indicacao_docentes" placeholder="Data Indicacao Docentes">
+                        <mat-datepicker-toggle matSuffix [for]="picker16"></mat-datepicker-toggle>
+                        <mat-datepicker #picker16></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Envio de Questoes</mat-label>
+                        <input matInput [matDatepicker]="picker13" formControlName="data_envio_questoes" placeholder="Data envio questoes">
+                        <mat-datepicker-toggle matSuffix [for]="picker13"></mat-datepicker-toggle>
+                        <mat-datepicker #picker13></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Diagramacao</mat-label>
+                        <input matInput [matDatepicker]="picker2" formControlName="data_diagramacao" placeholder="Data diagramacao">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Revisao</mat-label>
+                        <input matInput [matDatepicker]="picker3" formControlName="data_revisao" placeholder="Data revisao">
+                        <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                        <mat-datepicker #picker3></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Impressao</mat-label>
+                        <input matInput [matDatepicker]="picker4" formControlName="data_impressao" placeholder="Data impressao">
+                        <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                        <mat-datepicker #picker4></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Ensalamento</mat-label>
+                        <input matInput [matDatepicker]="picker5" formControlName="data_ensalamento" placeholder="Data ensalamento">
+                        <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                        <mat-datepicker #picker5></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Lancamento Notas</mat-label>
+                        <input matInput [matDatepicker]="picker6" formControlName="data_lancamento_notas" placeholder="Data lancamento notas">
+                        <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                        <mat-datepicker #picker6></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Correcao Redacao</mat-label>
+                        <input matInput [matDatepicker]="picker7" formControlName="data_correcao_redacao" placeholder="Data Correcao Redacao">
+                        <mat-datepicker-toggle matSuffix [for]="picker7"></mat-datepicker-toggle>
+                        <mat-datepicker #picker7></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Enviar Recurso</mat-label>
+                        <input matInput [matDatepicker]="picker8" formControlName="data_enviar_recurso" placeholder="Data Enviar Recurso">
+                        <mat-datepicker-toggle matSuffix [for]="picker8"></mat-datepicker-toggle>
+                        <mat-datepicker #picker8></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Analise Recurso</mat-label>
+                        <input matInput [matDatepicker]="picker9" formControlName="data_analise_recurso" placeholder="Data Analise Recurso">
+                        <mat-datepicker-toggle matSuffix [for]="picker9"></mat-datepicker-toggle>
+                        <mat-datepicker #picker9></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Atualizacao Notas</mat-label>
+                        <input matInput [matDatepicker]="picker14" formControlName="data_atualizacao_notas" placeholder="Data Atualizacao Notas">
+                        <mat-datepicker-toggle matSuffix [for]="picker14"></mat-datepicker-toggle>
+                        <mat-datepicker #picker14></mat-datepicker>
+                    </mat-form-field>
+                </div>                
+            </mat-card-content>
+        </form>
+        <div class="botoes">
+            <button mat-button (click)="avancarParaProximaAba()">Próxima Aba</button>
+            <button mat-button (click)="atualizarInformacoesAplicacaoForm()">Enviar atualizacoes</button>
+        </div>
     </mat-tab>
     <mat-tab>
         <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">thumb_up</mat-icon>
             {{titulo3}}
         </ng-template>
+        <form [formGroup]="informacoesAplicacaoForm">
+            <mat-card-title>
+                <h2>Datas Atividades da Comissao</h2>
+            </mat-card-title>
+            <mat-card-content>
+                <div class="grid-container">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Aplicacao</mat-label>
+                        <input matInput [matDatepicker]="picker17" formControlName="data_aplicacao" placeholder="Data Aplicacao">
+                        <mat-datepicker-toggle matSuffix [for]="picker17"></mat-datepicker-toggle>
+                        <mat-datepicker #picker17></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Reaplicacao</mat-label>
+                        <input matInput [matDatepicker]="picker18" formControlName="data_reaplicacao" placeholder="Data Reaplicacao">
+                        <mat-datepicker-toggle matSuffix [for]="picker18"></mat-datepicker-toggle>
+                        <mat-datepicker #picker18></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Data Divulgacao Notas</mat-label>
+                        <input matInput [matDatepicker]="picker19" formControlName="data_divulgacao_notas" placeholder="Data Divulgacao Notas">
+                        <mat-datepicker-toggle matSuffix [for]="picker19"></mat-datepicker-toggle>
+                        <mat-datepicker #picker19></mat-datepicker>
+                    </mat-form-field>
+                </div>                
+            </mat-card-content>
+        </form>
     </mat-tab>
 </mat-tab-group>
 
