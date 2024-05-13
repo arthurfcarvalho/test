@@ -25,6 +25,7 @@ export class FinalizarPluriComponent implements OnInit{
   informacoesGeraisForm!: FormGroup;
   atividadesComissaoForm!: FormGroup;
   informacoesAplicacaoForm!: FormGroup;
+  atualizarInformacoesGeraisForm!: FormGroup;
   dateString = '2024-05-11'; // Example string date
   dateObject = new Date(this.dateString);
   pluri: Pluri = {
@@ -63,8 +64,7 @@ export class FinalizarPluriComponent implements OnInit{
         console.log(`Pluri retorno ${idNumero}: `,pluriRetorno),this.pluri = pluriRetorno,console.log(`This Pluri:`, this.pluri);
       })
       const usuario = this.usuarioService.retornarUsuario();
-      this.inicializarFormularioAtividadesComissaoForm()
-      this.inicializarFormularioInformacoesGerais()
+      this.inicializarFormularios()
   }
 
   envioInformacoesGeraisForm(){
@@ -81,6 +81,16 @@ export class FinalizarPluriComponent implements OnInit{
     })
   }
 
+  atualizarInformacoesGerais(){
+    this.atualizarInformacoesGeraisForm.value.id = this.pluri.id
+    this.pluriService.atualizarInformacoesGerais(this.atualizarInformacoesGeraisForm.value).subscribe({
+      next: (value) => {
+        console.log("Atualizacao Realizada",value) 
+        
+      },error:(err) =>{console.log(this.atividadesComissaoForm.value),console.log("Error",err)}
+    })
+  }
+
   atualizarAtividadesDaComissaoForm(){
     console.log("ENVIO: ", this.atividadesComissaoForm.value)
     console.log(this.pluri.id)
@@ -93,11 +103,7 @@ export class FinalizarPluriComponent implements OnInit{
     })
   }
   atualizarInformacoesAplicacaoForm(){
-    let newDate: moment.Moment = moment.utc(this.informacoesAplicacaoForm.value.data_inicio_pluri).local();
-    this.informacoesAplicacaoForm.value.data_inicio_pluri = newDate.format("YYYY-MM-DD") + "T" + "00:00:01"; 
-    let newDate2: moment.Moment = moment.utc(this.informacoesAplicacaoForm.value.data_inicio_recuperacao).local();
-    this.informacoesAplicacaoForm.value.data_inicio_recuperacao = newDate2.format("YYYY-MM-DD") + "T" + "00:00:00"; 
-    
+    this.informacoesAplicacaoForm.value.id = this.pluri.id
     this.pluriService.atualizarInformacoesComissao(this.informacoesAplicacaoForm.value).subscribe({
       next: (value) => {
         console.log("Atualizacao Realizada",value) 
@@ -110,24 +116,16 @@ export class FinalizarPluriComponent implements OnInit{
     this.tabGroup.selectedIndex! += 1;
   }
 
-  inicializarFormularioInformacoesGerais() {
+  inicializarFormularios() {
     this.informacoesGeraisForm = this.formBuilder.group({
       codigo: '123',
-      trimestre: this.pluri.trimestre,
-      ano_aplicacao: this.pluri.ano_aplicacao,
+      trimestre:'',
+      ano_aplicacao: '',
       data_inicio_pluri: '',
       data_inicio_recuperacao: ''
     });
-    this.informacoesAplicacaoForm = this.formBuilder.group({
-      data_aplicacao: '',
-      data_reaplicacao: '',
-      data_divulgacao_notas: '',
-      realizado: false
-    })
-  }
-  inicializarFormularioAtividadesComissaoForm(){
     this.atividadesComissaoForm = this.formBuilder.group({
-      id: 2,
+      id: 0,
       data_indicacao_docentes: '',
       data_envio_questoes: '',
       data_diagramacao: '',
@@ -139,6 +137,21 @@ export class FinalizarPluriComponent implements OnInit{
       data_enviar_recurso: '',
       data_analise_recurso: '',
       data_atualizacao_notas: '',
+    })
+    this.informacoesAplicacaoForm = this.formBuilder.group({
+      id: 0,
+      data_aplicacao: '',
+      data_reaplicacao: '',
+      data_divulgacao_notas: '',
+      realizado: false
+    })
+    this.atualizarInformacoesGeraisForm = this.formBuilder.group({
+      id: 0,
+      codigo: '555',
+      trimestre: '',
+      ano_aplicacao: '',
+      data_inicio_pluri: '',
+      data_inicio_recuperacao: ''
     })
   }
 }

@@ -1,18 +1,18 @@
 <mat-tab-group >
     <mat-tab>
-        <div>
-            <p>Codigo: {{pluri.codigo}}</p>
-        </div>
-
         <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon"></mat-icon>
             {{titulo1}}
         </ng-template>
 
-        <form [formGroup]="informacoesGeraisForm">
+        <form [formGroup]="atualizarInformacoesGeraisForm">
             <mat-card-title>
                 <h2>Informacoes Gerais</h2>
             </mat-card-title>
+            <mat-form-field>
+                <label for="codigo">Codigo</label>
+                <input [(ngModel)]="pluri.codigo" matInput formControlName="codigo" placeholder="Digite o codigo de controle" >                        
+            </mat-form-field>
             <mat-card-content>
                 <mat-form-field>
                     <mat-label>Selecione o Trimestre</mat-label>
@@ -44,7 +44,7 @@
         </form>
         <div class="botoes">
             <button mat-button (click)="avancarParaProximaAba()">Próxima Aba</button>
-            <button mat-button (click)="envioInformacoesGeraisForm()">Salvar</button>
+            <button mat-button (click)="atualizarInformacoesGerais()">Atualizar</button>
         </div>
     </mat-tab>
     <mat-tab>

@@ -7,6 +7,7 @@ import { DadosDetalhamentoPluri } from '../views/pluri/models/DadosDetalhamentoP
 import { catchError, map, Observable } from 'rxjs';
 import { ApiResponsePage } from '../models/api-response-page.model';
 import { Pluri } from '../views/pluri/models/Pluri.model';
+import { DadosAtualizarInformacoesGerais } from '../views/pluri/models/DadosAtualizarInformacoesGerais.model';
 
 
 @Injectable({
@@ -25,6 +26,11 @@ export class PluriService{
         const url = this.baseUrl + '/atualizar-atividades-comissao'
         return this.http.put(url, dados);
     }
+    atualizarInformacoesGerais(dados:DadosAtualizarInformacoesGerais){
+        const url = this.baseUrl + '/atualizar-informacoes-gerais';
+        return this.http.put(url,dados);
+    }
+
     listarPlurisNaoRealizados(): Observable<ApiResponsePage>{
         const url = this.baseUrl + '/listar-pluris-nao-realizados'
         return this.http.get<ApiResponsePage>(url).pipe(
