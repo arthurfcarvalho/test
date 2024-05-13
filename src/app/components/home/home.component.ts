@@ -10,18 +10,18 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class HomeComponent implements OnInit {
   opened = false;
   usuarioLogado = false;
-
+  usuario = this.usuarioService.retornarUsuario();
 
   constructor(private usuarioService: UsuarioService, private router: Router){}
 
   ngOnInit(){
-    /*this.usuarioLogado = this.usuarioService.estaLogado();
+    this.usuarioLogado = this.usuarioService.estaLogado();
     if (this.usuarioLogado) {
       console.log(this.usuario)
       this.router.navigate(['/home']);
     } else {
       this.router.navigate(['/login']);
-    }*/
+    }
   }
 
   logout(): void {

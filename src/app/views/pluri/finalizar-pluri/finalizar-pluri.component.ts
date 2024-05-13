@@ -20,7 +20,6 @@ export class FinalizarPluriComponent implements OnInit{
   titulo2 = "Atividades Acompanhadas pela comissao";
   titulo3 = "Informações da Aplicação do PLURI";
   codigo = "TESTE001"
-  trimestres: string[] = ['1º Trimestre', '2º Trimestre', '3º Trimestre', '4º Trimestre'];
   trimestreSelecionado: string = '';
   informacoesGeraisForm!: FormGroup;
   atividadesComissaoForm!: FormGroup;
@@ -31,7 +30,7 @@ export class FinalizarPluriComponent implements OnInit{
   pluri: Pluri = {
     id: 0, 
     codigo: '',
-    trimestre: 1,
+    trimestre: 2,
     ano_aplicacao: 2024,
     data_inicio_pluri: this.dateObject,
     data_inicio_recuperacao: this.dateObject,
@@ -61,30 +60,20 @@ export class FinalizarPluriComponent implements OnInit{
       const id = this.route.snapshot.paramMap.get('id');
       const idNumero = Number(id)
       this.pluriService.listarPorId(idNumero).subscribe(pluriRetorno => {
-        console.log(`Pluri retorno ${idNumero}: `,pluriRetorno),this.pluri = pluriRetorno,console.log(`This Pluri:`, this.pluri);
+        console.log(`Pluri retorno ${idNumero}: `,pluriRetorno),this.pluri = pluriRetorno,console.log(`This Pluri:`, this.pluri),this.trimestreSelecionado = String (this.pluri.trimestre);;
       })
+      
       const usuario = this.usuarioService.retornarUsuario();
       this.inicializarFormularios()
   }
 
-  envioInformacoesGeraisForm(){
-    let newDate: moment.Moment = moment.utc(this.informacoesGeraisForm.value.data_inicio_pluri).local();
-    this.informacoesGeraisForm.value.data_inicio_pluri = newDate.format("YYYY-MM-DD") + "T" + "00:00:01"; 
-    let newDate2: moment.Moment = moment.utc(this.informacoesGeraisForm.value.data_inicio_recuperacao).local();
-    this.informacoesGeraisForm.value.data_inicio_recuperacao = newDate2.format("YYYY-MM-DD") + "T" + "00:00:00"; 
-    
-    this.pluriService.criarPluri(this.informacoesGeraisForm.value).subscribe({
-      next: (value) => {
-        console.log("Cadastro Realizado",value) 
-        
-      },error:(err) =>{console.log(this.informacoesGeraisForm.value),console.log("Error",err)}
-    })
-  }
 
   atualizarInformacoesGerais(){
     this.atualizarInformacoesGeraisForm.value.id = this.pluri.id
+    console.log(this.trimestreSelecionado)
     this.pluriService.atualizarInformacoesGerais(this.atualizarInformacoesGeraisForm.value).subscribe({
       next: (value) => {
+        console.log(this.atualizarInformacoesGeraisForm.value)
         console.log("Atualizacao Realizada",value) 
         
       },error:(err) =>{console.log(this.atividadesComissaoForm.value),console.log("Error",err)}
@@ -104,7 +93,7 @@ export class FinalizarPluriComponent implements OnInit{
   }
   atualizarInformacoesAplicacaoForm(){
     this.informacoesAplicacaoForm.value.id = this.pluri.id
-    this.pluriService.atualizarInformacoesComissao(this.informacoesAplicacaoForm.value).subscribe({
+    this.pluriService.atualizarInformacoesAplicacao(this.informacoesAplicacaoForm.value).subscribe({
       next: (value) => {
         console.log("Atualizacao Realizada",value) 
         
@@ -117,13 +106,6 @@ export class FinalizarPluriComponent implements OnInit{
   }
 
   inicializarFormularios() {
-    this.informacoesGeraisForm = this.formBuilder.group({
-      codigo: '123',
-      trimestre:'',
-      ano_aplicacao: '',
-      data_inicio_pluri: '',
-      data_inicio_recuperacao: ''
-    });
     this.atividadesComissaoForm = this.formBuilder.group({
       id: 0,
       data_indicacao_docentes: '',
@@ -147,8 +129,8 @@ export class FinalizarPluriComponent implements OnInit{
     })
     this.atualizarInformacoesGeraisForm = this.formBuilder.group({
       id: 0,
-      codigo: '555',
-      trimestre: '',
+      codigo: '',
+      trimestre: this.trimestreSelecionado,
       ano_aplicacao: '',
       data_inicio_pluri: '',
       data_inicio_recuperacao: ''

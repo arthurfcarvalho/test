@@ -15,3 +15,11 @@ mat-tab-group {
 .year-only-picker .mat-datepicker-content {
   max-width: none;
 }
+.grid-container{
+  display: grid;
+
+}
+.grid-container input{
+  margin: 3px;
+  width: min-content;
+}

@@ -43,6 +43,8 @@ import { CadastroPluriComponent } from './views/pluri/cadastro-pluri/cadastro-pl
 import {MatSelectModule} from '@angular/material/select';
 import { ListarPluriComponent } from './views/pluri/listar-pluri/listar-pluri/listar-pluri.component';
 import { FinalizarPluriComponent } from './views/pluri/finalizar-pluri/finalizar-pluri.component';
+import { HeaderComponent } from './components/header/header.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -58,6 +60,7 @@ import { FinalizarPluriComponent } from './views/pluri/finalizar-pluri/finalizar
     CadastroPluriComponent,
     ListarPluriComponent,
     FinalizarPluriComponent,
+    HeaderComponent,
     
     
   ],
@@ -85,7 +88,8 @@ import { FinalizarPluriComponent } from './views/pluri/finalizar-pluri/finalizar
     MatDatepickerModule,
     MatNativeDateModule,
     MatTabsModule,
-    MatSelectModule
+    MatSelectModule,
+    NgbModule
   ],
 
   providers: [

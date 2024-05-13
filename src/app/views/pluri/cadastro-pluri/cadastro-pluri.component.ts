@@ -6,6 +6,7 @@ import { MatTabGroup } from '@angular/material/tabs';
 import * as moment from 'moment';
 import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { DadosDetalhamentoPluri } from '../models/DadosDetalhamentoPluri.model';
 
 @Component({
   selector: 'app-cadastro-pluri',
@@ -27,6 +28,8 @@ export class CadastroPluriComponent implements OnInit{
   informacoesGeraisForm!: FormGroup;
   atividadesComissaoForm!: FormGroup;
   informacoesAplicacaoForm!: FormGroup;
+  idCriado = 0;
+
   
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService, private pluriService: PluriService){
   }
@@ -38,25 +41,21 @@ export class CadastroPluriComponent implements OnInit{
   }
 
   envioInformacoesGeraisForm(){
-    let newDate: moment.Moment = moment.utc(this.informacoesGeraisForm.value.data_inicio_pluri).local();
-    this.informacoesGeraisForm.value.data_inicio_pluri = newDate.format("YYYY-MM-DD") + "T" + "00:00:01"; 
-    let newDate2: moment.Moment = moment.utc(this.informacoesGeraisForm.value.data_inicio_recuperacao).local();
-    this.informacoesGeraisForm.value.data_inicio_recuperacao = newDate2.format("YYYY-MM-DD") + "T" + "00:00:00"; 
+    // let newDate: moment.Moment = moment.utc(this.informacoesGeraisForm.value.data_inicio_pluri).local();
+    // this.informacoesGeraisForm.value.data_inicio_pluri = newDate.format("YYYY-MM-DD") + "T" + "00:00:01"; 
+    // let newDate2: moment.Moment = moment.utc(this.informacoesGeraisForm.value.data_inicio_recuperacao).local();
+    // this.informacoesGeraisForm.value.data_inicio_recuperacao = newDate2.format("YYYY-MM-DD") + "T" + "00:00:00"; 
     
     this.pluriService.criarPluri(this.informacoesGeraisForm.value).subscribe({
-      next: (value) => {
-        console.log("Cadastro Realizado",value) 
-        
+      next: (value: DadosDetalhamentoPluri) => {
+        console.log("Cadastro Realizado",value),
+        this.idCriado = value.id;
+        console.log(this.idCriado)
       },error:(err) =>{console.log(this.informacoesGeraisForm.value),console.log("Error",err)}
     })
   }
 
   atualizarAtividadesDaComissaoForm(){
-    let newDate: moment.Moment = moment.utc(this.atividadesComissaoForm.value.data_inicio_pluri).local();
-    this.atividadesComissaoForm.value.data_inicio_pluri = newDate.format("YYYY-MM-DD") + "T" + "00:00:01"; 
-    let newDate2: moment.Moment = moment.utc(this.atividadesComissaoForm.value.data_inicio_recuperacao).local();
-    this.atividadesComissaoForm.value.data_inicio_recuperacao = newDate2.format("YYYY-MM-DD") + "T" + "00:00:00"; 
-    
     this.pluriService.atualizarInformacoesComissao(this.atividadesComissaoForm.value).subscribe({
       next: (value) => {
         console.log("Atualizacao Realizada",value) 
@@ -84,7 +83,7 @@ export class CadastroPluriComponent implements OnInit{
 
   inicializarFormulario() {
     this.informacoesGeraisForm = this.formBuilder.group({
-      codigo: '123',
+      codigo: '',
       trimestre: 1,
       ano_aplicacao: 2024,
       data_inicio_pluri: '',
@@ -102,7 +101,7 @@ export class CadastroPluriComponent implements OnInit{
       data_enviar_recurso: '',
       data_analise_recurso: '',
       data_atualizacao_notas: '',
-    })
+    });
     this.informacoesAplicacaoForm = this.formBuilder.group({
       data_aplicacao: '',
       data_reaplicacao: '',

@@ -8,6 +8,7 @@ import { catchError, map, Observable } from 'rxjs';
 import { ApiResponsePage } from '../models/api-response-page.model';
 import { Pluri } from '../views/pluri/models/Pluri.model';
 import { DadosAtualizarInformacoesGerais } from '../views/pluri/models/DadosAtualizarInformacoesGerais.model';
+import { DadosAplicacaoPluri } from '../views/pluri/models/DadosAplicacaoPluri.model';
 
 
 @Injectable({
@@ -18,9 +19,9 @@ export class PluriService{
     baseUrl = "http://localhost:8080/pluri"
     constructor(private http: HttpClient, private tokenService: TokenService) { }
 
-    criarPluri(dados: DadosPluriInformacoesGerais){
+    criarPluri(dados: DadosPluriInformacoesGerais): Observable<DadosDetalhamentoPluri>{
         const url = this.baseUrl + '/criar-pluri'
-        return this.http.post(url, dados);
+        return this.http.post<DadosDetalhamentoPluri>(url, dados);
     }
     atualizarInformacoesComissao(dados: DadosAtividadesDaComissao){
         const url = this.baseUrl + '/atualizar-atividades-comissao'
@@ -29,6 +30,10 @@ export class PluriService{
     atualizarInformacoesGerais(dados:DadosAtualizarInformacoesGerais){
         const url = this.baseUrl + '/atualizar-informacoes-gerais';
         return this.http.put(url,dados);
+    }
+    atualizarInformacoesAplicacao(dados: DadosAplicacaoPluri){
+        const url = this.baseUrl + '/atualizar-informacoes-aplicacao'
+        return this.http.put(url, dados)
     }
 
     listarPlurisNaoRealizados(): Observable<ApiResponsePage>{

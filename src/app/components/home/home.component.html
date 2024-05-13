@@ -1,32 +1,26 @@
-<ng-container *ngIf="usuarioLogado; else loginRoute"> 
-    <mat-toolbar class="toolbar">
-      <mat-toolbar-row>
-        <button mat-button (click)="opened=!opened"><mat-icon class="mat-18">menu</mat-icon></button>
-        <h4>Pluri</h4>
-        <div class="spacer"></div>  
-        <div>
-          <button class="nav-button"><a (click)="logout()">Logout</a></button>
-        </div>
-      </mat-toolbar-row>
-    </mat-toolbar>
-    
-    <mat-sidenav-container>
-      <mat-sidenav [(opened)]="opened" mode="side">
-        <button class="nav-button"><a routerLink="/home">Home</a></button>
-        <button class="nav-button" [matMenuTriggerFor]="editorMenu"><a>Usuario</a></button> 
-        <mat-menu #editorMenu="matMenu"> 
-          <button mat-menu-item><a routerLink="/usuario/atribuir-perfis">Atribuir Perfis</a></button>
-          <button mat-menu-item><a routerLink="/usuario/cadastrar">Cadastrar Usuario</a></button>
-        </mat-menu>
-      </mat-sidenav>
-      <mat-sidenav-content>
-        <div class="conteudo">
-          <router-outlet></router-outlet>    
-        </div>
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  </ng-container>
-  
-  <ng-template #loginRoute>
-    <router-outlet></router-outlet>
-  </ng-template>
+<mat-toolbar class="toolbar">
+  <mat-toolbar-row>
+    <button mat-button (click)="opened=!opened"><mat-icon class="mat-18">menu</mat-icon></button>
+    <h4>Pluri</h4>
+    <div class="spacer"></div>  
+    <div>
+      <button class="nav-button"><a (click)="logout()">Logout</a></button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav [(opened)]="opened" mode="side">
+    <button class="nav-button"><a routerLink="/home">Home</a></button>
+    <button class="nav-button" [matMenuTriggerFor]="editorMenu"><a>Usuario</a></button> 
+    <mat-menu #editorMenu="matMenu"> 
+      <button mat-menu-item><a routerLink="/usuario/atribuir-perfis">Atribuir Perfis</a></button>
+      <button mat-menu-item><a routerLink="/usuario/cadastrar">Cadastrar Usuario</a></button>
+    </mat-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="conteudo">
+      <router-outlet></router-outlet>    
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

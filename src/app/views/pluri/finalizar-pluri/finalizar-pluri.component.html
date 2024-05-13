@@ -1,4 +1,4 @@
-<mat-tab-group >
+<!-- <mat-tab-group >
     <mat-tab>
         <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon"></mat-icon>
@@ -16,7 +16,7 @@
             <mat-card-content>
                 <mat-form-field>
                     <mat-label>Selecione o Trimestre</mat-label>
-                    <mat-select  disableRipple>
+                    <mat-select formControlName="trimestre" [value]="trimestreSelecionado">
                       <mat-option value="1">1º trimestre</mat-option>
                       <mat-option value="2">2º trimestre</mat-option>
                       <mat-option value="3">3º trimestre</mat-option>
@@ -164,6 +164,154 @@
                 </div>                
             </mat-card-content>
         </form>
+        <div class="botoes">
+            <button mat-button (click)="avancarParaProximaAba()">Próxima Aba</button>
+            <button mat-button (click)="atualizarInformacoesAplicacaoForm()">Enviar atualizacoes</button>
+        </div>
+    </mat-tab>
+</mat-tab-group>
+
+<mat-card class="demo-inline-calendar-card">
+    <mat-calendar [(selected)]="selected"></mat-calendar>
+</mat-card>
+<p>Selected date: {{selected}}</p> -->
+<mat-tab-group >
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon"></mat-icon>
+            {{titulo1}}
+        </ng-template>
+
+        <form [formGroup]="atualizarInformacoesGeraisForm">
+            <mat-card-title>
+                <h2>Informacoes Gerais</h2>
+            </mat-card-title>
+                <label for="codigo">Codigo</label>
+                <input [(ngModel)]="pluri.codigo" matInput formControlName="codigo" placeholder="Digite o codigo de controle" >                        
+            <mat-card-content>
+                <mat-form-field>
+                    <mat-label>Selecione o Trimestre</mat-label>
+                    <mat-select formControlName="trimestre" [value]="trimestreSelecionado">
+                      <mat-option value="1">1º trimestre</mat-option>
+                      <mat-option value="2">2º trimestre</mat-option>
+                      <mat-option value="3">3º trimestre</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div class="grid-container">
+                        <mat-label >Ano de Aplicacao</mat-label>
+                        <input [(ngModel)]="pluri.ano_aplicacao" matInput formControlName="ano_aplicacao" placeholder="Ano de aplicacao" >                                     
+
+                    
+                        <mat-label>Data inicio pluri</mat-label>
+                        <input type="date" [(ngModel)]="pluri.data_inicio_pluri" formControlName="data_inicio_pluri" placeholder="Data inicio pluri">
+                    
+                    
+                        <mat-label>Data inicio recuperacao</mat-label>
+                        <input type="date" [(ngModel)]="pluri.data_inicio_recuperacao" formControlName="data_inicio_recuperacao" placeholder="Data inicio recuperacao">
+                    
+                </div>                
+            </mat-card-content>
+        </form>
+        <div class="botoes">
+            <button mat-button (click)="avancarParaProximaAba()">Próxima Aba</button>
+            <button mat-button (click)="atualizarInformacoesGerais()">Atualizar</button>
+        </div>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon"></mat-icon>
+            {{titulo2}}
+        </ng-template>
+        <form [formGroup]="atividadesComissaoForm">
+            <mat-card-title>
+                <h2>Datas Atividades da Comissao</h2>
+            </mat-card-title>
+            <mat-card-content>
+                <div class="grid-container">
+                    
+                        <mat-label>Data Indicacao Docentes</mat-label>
+                        <input  type="date" [(ngModel)]="pluri.data_indicacao_docentes"   formControlName="data_indicacao_docentes" placeholder="Data Indicacao Docentes">
+
+                    
+                        <mat-label>Data Envio de Questoes</mat-label>
+                        <input type="date" [(ngModel)]="pluri.data_envio_questoes"   formControlName="data_envio_questoes" placeholder="Data envio questoes">
+                    
+                    
+                        <mat-label>Data Diagramacao</mat-label>
+                        <input type="date" [(ngModel)]="pluri.data_diagramacao"  formControlName="data_diagramacao" placeholder="Data diagramacao">
+                    
+                    
+                        <mat-label>Data Revisao</mat-label>
+                        <input type="date" [(ngModel)]="pluri.data_revisao"  formControlName="data_revisao" placeholder="Data revisao">
+                    
+                    
+                        <mat-label>Data Impressao</mat-label>
+                        <input type="date" [(ngModel)]="pluri.data_impressao" formControlName="data_impressao" placeholder="Data impressao">
+                        
+                    
+                    
+                        <mat-label>Data Ensalamento</mat-label>
+                        <input type="date" [(ngModel)]="pluri.data_ensalamento" formControlName="data_ensalamento" placeholder="Data ensalamento">
+                    
+                    
+                    
+                        <mat-label>Data Lancamento Notas</mat-label>
+                        <input [(ngModel)]="pluri.data_lancamento_notas" type="date" formControlName="data_lancamento_notas" placeholder="Data lancamento notas">
+                    
+                    
+                        <mat-label>Data Correcao Redacao</mat-label>
+                        <input [(ngModel)]="pluri.data_correcao_redacao"  type="date" formControlName="data_correcao_redacao" placeholder="Data Correcao Redacao">
+                    
+                    
+                        <mat-label>Data Enviar Recurso</mat-label>
+                        <input [(ngModel)]="pluri.data_enviar_recurso" type="date" formControlName="data_enviar_recurso" placeholder="Data Enviar Recurso">
+                    
+                    
+                        <mat-label>Data Analise Recurso</mat-label>
+                        <input [(ngModel)]="pluri.data_analise_recurso" type="date" formControlName="data_analise_recurso" placeholder="Data Analise Recurso">
+                    
+                    
+                        <mat-label>Data Atualizacao Notas</mat-label>
+                        <input [(ngModel)]="pluri.data_atualizacao_notas" type="date" formControlName="data_atualizacao_notas" placeholder="Data Atualizacao Notas">
+
+                </div>                
+            </mat-card-content>
+        </form>
+        <div class="botoes">
+            <button mat-button (click)="avancarParaProximaAba()">Próxima Aba</button>
+            <button mat-button (click)="atualizarAtividadesDaComissaoForm()">Enviar atualizacoes</button>
+        </div>
+    </mat-tab>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">thumb_up</mat-icon>
+            {{titulo3}}
+        </ng-template>
+        <form [formGroup]="informacoesAplicacaoForm">
+            <mat-card-title>
+                <h2>Informacoes aplicacao Pluri</h2>
+            </mat-card-title>
+            <mat-card-content>
+                <div class="grid-container">
+                    
+                        <mat-label>Data Aplicacao</mat-label>
+                        <input [(ngModel)]="pluri.data_aplicacao" type="date" formControlName="data_aplicacao" placeholder="Data Aplicacao">
+                    
+                    
+                        <mat-label>Data Reaplicacao</mat-label>
+                        <input [(ngModel)]="pluri.data_reaplicacao" type="date" formControlName="data_reaplicacao" placeholder="Data Reaplicacao">
+                    
+                    
+                        <mat-label>Data Divulgacao Notas</mat-label>
+                        <input [(ngModel)]="pluri.data_divulgacao_notas" type="date" formControlName="data_divulgacao_notas" placeholder="Data Divulgacao Notas">
+                
+                </div>                
+            </mat-card-content>
+        </form>
+        <div class="botoes">
+            <button mat-button (click)="avancarParaProximaAba()">Próxima Aba</button>
+            <button mat-button (click)="atualizarInformacoesAplicacaoForm()">Enviar atualizacoes</button>
+        </div>
     </mat-tab>
 </mat-tab-group>
 

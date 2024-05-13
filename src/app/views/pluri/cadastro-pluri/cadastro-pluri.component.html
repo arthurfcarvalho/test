@@ -1,10 +1,5 @@
 <mat-tab-group >
     <mat-tab>
-        
-        <div>
-            {{codigo}}
-        </div>
-
         <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon"></mat-icon>
             {{titulo1}}
@@ -14,10 +9,14 @@
             <mat-card-title>
                 <h2>Informacoes Gerais</h2>
             </mat-card-title>
+            <mat-form-field>
+                <label for="codigo">Codigo</label>
+                <input matInput formControlName="codigo" placeholder="Digite o codigo de controle" >                        
+            </mat-form-field>
             <mat-card-content>
                 <mat-form-field>
                     <mat-label>Selecione o Trimestre</mat-label>
-                    <mat-select disableRipple>
+                    <mat-select formControlName="trimestre" [value]="trimestreSelecionado">
                       <mat-option value="1">1º trimestre</mat-option>
                       <mat-option value="2">2º trimestre</mat-option>
                       <mat-option value="3">3º trimestre</mat-option>

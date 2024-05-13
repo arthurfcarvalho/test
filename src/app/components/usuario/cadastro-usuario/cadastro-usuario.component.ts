@@ -40,8 +40,11 @@ export class CadastroUsuarioComponent implements OnInit {
 
   
   cadastrar() {  
+    console.log("ANTES:",this.cadastroForm.value.dataNascimento)
     let newDate: moment.Moment = moment.utc(this.cadastroForm.value.dataNascimento).local();
+    console.log("NEW DATE: ", newDate)
     this.cadastroForm.value.dataNascimento = newDate.format("YYYY-MM-DD") + "T" + "00:00:00"; 
+    console.log("DEPOIS:",this.cadastroForm.value.dataNascimento)
     this.usuarioService.cadastrar(this.cadastroForm.value).subscribe({
       next: (value) => {
         console.log("Cadastro Realizado",value) 
