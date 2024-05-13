@@ -4,6 +4,11 @@
         <p>Data inicio: {{pluri.data_inicio_pluri}}</p>
         <p>Trimestre: {{pluri.trimestre}}</p>
         <p>Ano: {{pluri.ano_aplicacao}}</p>
-
+        <div class="div-btn">
+            <a routerLink="/pluri/finalizar/{{ pluri.id }}">
+                <button  mat-raised-button color="primary" (click)="finalizar()">Finalizar</button>
+            </a>
+            
+        </div>
     </mat-card>
 </ng-container>

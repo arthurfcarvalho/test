@@ -37,4 +37,7 @@ export class PluriService{
             map(obj => obj)
         )
     }
+    editar(){
+        
+    }
 }

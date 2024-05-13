@@ -42,6 +42,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { CadastroPluriComponent } from './views/pluri/cadastro-pluri/cadastro-pluri.component';
 import {MatSelectModule} from '@angular/material/select';
 import { ListarPluriComponent } from './views/pluri/listar-pluri/listar-pluri/listar-pluri.component';
+import { FinalizarPluriComponent } from './views/pluri/finalizar-pluri/finalizar-pluri.component';
 
 
 
@@ -56,6 +57,7 @@ import { ListarPluriComponent } from './views/pluri/listar-pluri/listar-pluri/li
     LocalDateTimePipe,
     CadastroPluriComponent,
     ListarPluriComponent,
+    FinalizarPluriComponent,
     
     
   ],

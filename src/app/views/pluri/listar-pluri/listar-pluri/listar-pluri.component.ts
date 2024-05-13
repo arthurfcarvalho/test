@@ -26,4 +26,6 @@ export class ListarPluriComponent implements AfterViewInit{
       console.log(data)
     })
   }
+  editar(){}
+  finalizar(){}
 }

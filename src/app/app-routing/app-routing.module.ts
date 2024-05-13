@@ -8,6 +8,7 @@ import { HomeComponent } from '../components/home/home.component';
 import { CadastroUsuarioComponent } from '../components/usuario/cadastro-usuario/cadastro-usuario.component';
 import { CadastroPluriComponent } from '../views/pluri/cadastro-pluri/cadastro-pluri.component';
 import { ListarPluriComponent } from '../views/pluri/listar-pluri/listar-pluri/listar-pluri.component';
+import { FinalizarPluriComponent } from '../views/pluri/finalizar-pluri/finalizar-pluri.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
     { path: 'usuario/cadastrar', component: CadastroUsuarioComponent},
     { path: 'pluri/criar', component: CadastroPluriComponent},
     { path: 'pluri/listar', component: ListarPluriComponent},
+    { path: 'pluri/finalizar/:id', component: FinalizarPluriComponent},
   ];
 
 
